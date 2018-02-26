@@ -1,0 +1,359 @@
+HTML：
+  计算机网络知识：
+  https://www.jianshu.com/p/21b5cbac0849
+
+1、从输入网址到显示网页的过程分析
+  1、应用层DNS解析域名：客户端先检查本地缓存是否有对应的IP地址，若找到则返回响应的IP地址。若没找到则请求上级DNS服务器，直至找到或到根节点。
+  2、浏览器与服务器建立TCP连接（默认端口80）(详细点可以说下三次握手的过程)
+  3、应用层客户端发送HTTP请求。
+  4、服务器响应请求：查找客户端请求的资源，并返回响应报文，响应报文中包括一个重要的信息——状态码（200-300，成功；304使用缓存）。
+  5、服务器返回相应文件给浏览器。
+  6、Tcp连接释放(可以说下四次挥手的过程)。
+  7、浏览器对HTML文件进行解析构建DOM树 ，构建渲染树 ，js根据DomAPI操作执行绑定事件等，页面显示完成。
+  
+2.HTTP method
+HTTP1.0定义了三种请求方法： GET, POST 和 HEAD方法。
+HTTP1.1新增了五种请求方法：OPTIONS, PUT, DELETE, TRACE 和 CONNECT 方法。
+序号 方法	         描述
+1	  GET	请求指定的页面信息，并返回实体主体。
+2  	HEAD	类似于get请求，只不过返回的响应中没有具体的内容，用于获取报头
+3	  POST	向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。POST请求可能会导致新的资源的建立和/或已有资源的修改。
+4  	PUT	从客户端向服务器传送的数据取代指定的文档的内容。
+5  	DELETE	请求服务器删除指定的页面。
+6	  CONNECT	HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器。
+7	  OPTIONS	允许客户端查看服务器的性能。
+8	  TRACE	回显服务器收到的请求，主要用于测试或诊断。
+
+3.HTTP request报文结构是怎样的
+  rfc2616中进行了定义：
+  首行是Request-Line包括：请求方法，请求URI，协议版本，CRLF
+  首行之后是若干行请求头，包括general-header，request-header或者entity-header，每个一行以CRLF结束
+  请求头和消息实体之间有一个CRLF分隔
+  根据实际请求需要可能包含一个消息实体 一个请求报文例子如下：
+GET /Protocols/rfc2616/rfc2616-sec5.html HTTP/1.1
+Host: www.w3.org
+Connection: keep-alive
+Cache-Control: max-age=0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36
+Referer: https://www.google.com.hk/
+Accept-Encoding: gzip,deflate,sdch
+Accept-Language: zh-CN,zh;q=0.8,en;q=0.6
+Cookie: authorstyle=yes
+If-None-Match: "2cc8-3e3073913b100"
+If-Modified-Since: Wed, 01 Sep 2004 13:24:52 GMT
+
+4.HTTP response报文结构是怎样的
+  rfc2616中进行了定义：
+  首行是状态行包括：HTTP版本，状态码，状态描述，后面跟一个CRLF
+  首行之后是若干行响应头，包括：通用头部，响应头部，实体头部
+  响应头部和响应实体之间用一个CRLF空行分隔
+  最后是一个可能的消息实体 响应报文例子如下：
+HTTP/1.1 200 OK
+Date: Tue, 08 Jul 2014 05:28:43 GMT
+Server: Apache/2
+Last-Modified: Wed, 01 Sep 2004 13:24:52 GMT
+ETag: "40d7-3e3073913b100"
+Accept-Ranges: bytes
+Content-Length: 16599
+Cache-Control: max-age=21600
+Expires: Tue, 08 Jul 2014 11:28:43 GMT
+P3P: policyref="http://www.w3.org/2001/05/P3P/p3p.xml"
+Content-Type: text/html; charset=iso-8859-1
+
+{"name": "qiu", "age": 25}
+
+name=qiu&age=25
+
+5.什么是渐进增强
+渐进增强是指在web设计时强调可访问性、语义化HTML标签、外部样式表和脚本。保证所有人都能访问页面的基本内容和功能同时为高级浏览器和高带宽用户提供更好的用户体验。核心原则如下:
+所有浏览器都必须能访问基本内容
+所有浏览器都必须能使用基本功能
+所有内容都包含在语义化标签中
+通过外部CSS提供增强的布局
+通过非侵入式、外部javascript提供增强功能
+
+6.前端需要注意哪些SEO
+合理的title、description、keywords：搜索对着三项的权重逐个减小，title值强调重点即可，重要关键词出现不要超过2次，而且要靠前，不同页面title要有所不同；description把页面内容高度概括，长度合适，不可过分堆砌关键词，不同页面description有所不同；keywords列举出重要关键词即可
+语义化的HTML代码，符合W3C规范：语义化代码让搜索引擎容易理解网页
+重要内容HTML代码放在最前：搜索引擎抓取HTML顺序是从上到下，有的搜索引擎对抓取长度有限制，保证重要内容一定会被抓取
+重要内容不要用js输出：爬虫不会执行js获取内容
+少用iframe：搜索引擎不会抓取iframe中的内容
+非装饰性图片必须加alt
+提高网站速度：网站速度是搜索引擎排序的一个重要指标
+
+7.HTTP状态码及其含义
+参考RFC 2616
+1XX：信息状态码 
+100 Continue：客户端应当继续发送请求。这个临时相应是用来通知客户端它的部分请求已经被服务器接收，且仍未被拒绝。
+              客户端应当继续发送请求的剩余部分，或者如果请求已经完成，忽略这个响应。服务器必须在请求万仇向客户端发送一个最终响应
+101 Switching Protocols：服务器已经理解力客户端的请求，并将通过Upgrade消息头通知客户端采用不同的协议来完成这个请求。
+                          在发送完这个响应最后的空行后，服务器将会切换到Upgrade消息头中定义的那些协议。
+2XX：成功状态码 
+    200 OK：请求成功，请求所希望的响应头或数据体将随此响应返回
+    201 Created：
+    202 Accepted：
+    203 Non-Authoritative Information：
+    204 No Content：
+    205 Reset Content：
+    206 Partial Content：
+3XX：重定向 
+    300 Multiple Choices：
+    301 Moved Permanently：
+    302 Found：
+    303 See Other：
+    304 Not Modified：
+    305 Use Proxy：
+    306 （unused）：
+    307 Temporary Redirect：
+4XX：客户端错误 
+    400 Bad Request:
+    401 Unauthorized:
+    402 Payment Required:
+    403 Forbidden:
+    404 Not Found:
+    405 Method Not Allowed:
+    406 Not Acceptable:
+    407 Proxy Authentication Required:
+    408 Request Timeout:
+    409 Conflict:
+    410 Gone:
+    411 Length Required:
+    412 Precondition Failed:
+    413 Request Entity Too Large:
+    414 Request-URI Too Long:
+    415 Unsupported Media Type:
+    416 Requested Range Not Satisfiable:
+    417 Expectation Failed:
+5XX: 服务器错误 
+    500 Internal Server Error:
+    501 Not Implemented:
+    502 Bad Gateway:
+    503 Service Unavailable:
+    504 Gateway Timeout:
+    505 HTTP Version Not Supported:
+
+8.doctype是什么,举例常见doctype及特点
+<!doctype>声明必须处于HTML文档的头部，在<html>标签之前，HTML5中不区分大小写
+<!doctype>声明不是一个HTML标签，是一个用于告诉浏览器当前HTMl版本的指令
+现代浏览器的html布局引擎通过检查doctype决定使用兼容模式还是标准模式对文档进行渲染，一些浏览器有一个接近标准模型。
+在HTML4.01中<!doctype>声明指向一个DTD，由于HTML4.01基于SGML，所以DTD指定了标记规则以保证浏览器正确渲染内容
+HTML5不基于SGML，所以不用指定DTD
+常见dotype：
+HTML4.01 strict：不允许使用表现性、废弃元素（如font）以及frameset。声明：<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+HTML4.01 Transitional:允许使用表现性、废弃元素（如font），不允许使用frameset。声明：<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+HTML4.01 Frameset:允许表现性元素，废气元素以及frameset。声明：<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
+XHTML1.0 Strict:不使用允许表现性、废弃元素以及frameset。文档必须是结构良好的XML文档。声明：<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+XHTML1.0 Transitional:允许使用表现性、废弃元素，不允许frameset，文档必须是结构良好的XMl文档。声明： <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+XHTML 1.0 Frameset:允许使用表现性、废弃元素以及frameset，文档必须是结构良好的XML文档。声明：<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+HTML 5: <!doctype html>
+
+9.
+HTML全局属性(global attribute)有哪些
+参考资料：MDN: html global attribute或者W3C HTML global-attributes
+accesskey:设置快捷键，提供快速访问元素如aaa在windows下的firefox中按alt + shift + a可激活元素
+class:为元素设置类标识，多个类名用空格分开，CSS和javascript可通过class属性获取元素
+contenteditable: 指定元素内容是否可编辑
+contextmenu: 自定义鼠标右键弹出菜单内容
+data-*: 为元素增加自定义属性
+dir: 设置元素文本方向
+draggable: 设置元素是否可拖拽
+dropzone: 设置元素拖放类型： copy, move, link
+hidden: 表示一个元素是否与文档。样式上会导致元素不显示，但是不能用这个属性实现样式效果
+id: 元素id，文档内唯一
+lang: 元素内容的的语言
+spellcheck: 是否启动拼写和语法检查
+style: 行内css样式
+tabindex: 设置元素可以获得焦点，通过tab可以导航
+title: 元素相关的建议信息
+translate: 元素和子孙节点内容是否需要本地化
+
+10.什么是web语义化,有什么好处
+web语义化是指通过HTML标记表示页面包含的信息，包含了HTML标签的语义化和css命名的语义化。 HTML标签的语义化是指：
+通过使用包含语义的标签（如h1-h6）恰当地表示文档结构 
+css命名的语义化是指：为html标签添加有意义的class，id补充未表达的语义，如Microformat通过添加符合规则的class描述信息
+为什么需要语义化：
+去掉样式后页面呈现清晰的结构
+盲人使用读屏器更好地阅读
+搜索引擎更好地理解页面，有利于收录
+便团队项目的可持续运作及维护
+
+
+
+CSS：
+1.display:none和visibility:none的区别
+
+  display:none;会让元素完全从渲染树中消失，渲染的时候不占据任何空间； 
+  visibility: hidden;不会让元素从渲染树消失，渲染师元素继续占据空间，只是内容不可见 
+  display: none;是非继承属性，子孙节点消失由于元素从渲染树消失造成，通过修改子孙节点属性无法显示； 
+  visibility: hidden;是继承属性，子孙节点消失由于继承了hidden，通过设置visibility: visible;可以让子孙节点显示； 
+  修改常规流中元素的display通常会造成文档重排。修改visibility属性只会造成本元素的重绘。 
+  读屏器不会读取display: none;元素内容；会读取visibility: hidden;元素内容
+  两者都是将某个元素隐藏起来，区别是：display:none会使对象彻底消失，不占据空间；但是visibility:hidden所占的空间还在，留了一块空白区域。
+  
+  <div id="test1">
+    <span id="test2"></span>
+  </div>
+  
+  #test1和#test2设置为以下情况，mypic是否会被浏览器加载
+  #test2 {
+    background-image: url('mypic.jpg');
+    display: none;
+  }// mypic会被加载
+  #test2 {
+    background-image: url('mypic.jpg');
+    visibility: hidden;
+  }// mypic会被加载
+ 
+ 
+ #test1 {
+    display: none;
+  }
+  #test2 {
+    background-image: url('mypic.jpg');
+    visibility: hidden;
+  } // mypic 不会被加载
+  
+  #test1 {
+    visibility: hidden;
+  }
+  #test2 {
+    background-image: url('mypic.jpg');
+    display: none;
+  }// mypic会被加载
+  
+ 2.only选择器的作用是？
+ 停止旧版本浏览器解析选择器的其余部分
+ only 用来定某种特定的媒体类型，可以用来排除不支持媒体查询的浏览器
+ 其实only很多时候是用来对那些不支持Media Query 但却支持Media Type 的设备隐藏样式表的
+ 3. "screen""关键字是匹配设备的物理屏幕还是浏览器的viewport
+ 后者
+ 为了让手机也能获得良好的网页浏览体验，Apple找到了一个办法：
+ 在移动版(iOS)的Safari中定义了viewport meta标签①，它的作用就是创建一个虚拟的窗口(viewport)，
+ 而且这个虚拟窗口的分辨率接近于桌面显示器，Apple将其定位为980px②。
+ 4.CSS优先级
+ http://www.cnblogs.com/wangfupeng1988/p/4285251.html
+ 
+  特指度规则：这个计算叫做“I-C-E”计算公式，
+  I——Id；
+  C——Class；
+  E——Element；
+　即，针对一个css选择器表达式，遇到一个id就往特指度数值中加100，遇到一个class就往特指度数值中加10，遇到一个element就往特指度数值中加1。
+  
+  简版规则：
+  规则一，包含ID的选择器胜过包含Class的选择器，包含Class的选择器胜过包含元素的选择器
+  规则二，不同选择器的特指度比较时，不区分加载的顺序（相同选择器在层叠时，后加载的覆盖前加载的
+  规则三，设置的样式高于继承的样式，不用考虑特指度
+ 
+ 5.浏览器CSS匹配顺序：
+浏览器CSS匹配不是从左到右进行查找，而是从右到左进行查找。比如#divBox p span.red{color:red;}，
+浏览器的查找顺序如下：先查找html中所有class='red'的span元素，找到后，再查找其父辈元素中是否有p元素，再判断p的父元素中是否有id为divBox的div元素，
+如果都存在则匹配上。浏览器从右到左进行查找的好处是为了尽早过滤掉一些无关的样式规则和元素。
+
+ 6.浏览器渲染
+ https://coolshell.cn/articles/9666.html
+ http://developer.51cto.com/art/201311/418133.htm
+ http://www.nowamagic.net/academy/detail/48110160
+ http://div.io/topic/609
+ 
+ 7.BFC
+ Block formatting contexts
+ 浮动元素和绝对定位元素，非块级盒子的块级容器（例如 inline-blocks, table-cells, 和 table-captions），以及overflow值不为“visiable”的块级盒子，
+ 都会为他们的内容创建新的BFC（块级格式上下文）。
+
+ 8.css sprite
+ CSSSprites在国内很多人叫css精灵，是一种网页图片应用处理方式。
+ 概念：将多个小图片拼接到一个图片中。通过background-position和元素尺寸调节需要显示的背景图案。
+优点：
+减少HTTP请求数，极大地提高页面加载速度
+增加图片信息重复度，提高压缩比，减少图片大小
+更换风格方便，只需在一张或几张图片上修改颜色或样式即可实现
+缺点：
+图片合并麻烦
+维护麻烦，修改一个图片可能需要从新布局整个图片，样式
+ 
+9.
+  css hack原理及常用hack
+原理：利用不同浏览器对CSS的支持和解析结果不一样编写针对特定浏览器样式。常见的hack有1）属性hack。2）选择器hack。3）IE条件注释
+ 书写顺序，一般是将识别能力强的浏览器的CSS写在后面
+ （待补充）
+10.link和@import的区别
+页面中使用CSS的方式主要有3种：行内添加定义style属性值，页面头部内嵌调用和外面链接调用，其中外面引用有两种：link和@import。
+<link rel="stylesheet" rev="stylesheet" href="CSS文件" type="text/css" media="all" />   
+或<style type="text/css" media="screen">   
+@import url("CSS文件");   
+</style>   
+　    区别1：link是XHTML标签，除了加载CSS外，还可以定义RSS等其他事务；@import属于CSS范畴，只能加载CSS。
+　　  区别2：link引用CSS时，在页面载入时同时加载；@import需要页面网页完全载入以后加载。
+　　  区别3：link是XHTML标签，无兼容问题；@import是在CSS2.1提出的，低版本的浏览器不支持。
+　　  区别4：ink支持使用Javascript控制DOM去改变样式；而@import不支持。
+ 
+ 
+11.PNG,GIF,JPG的区别及如何选
+GIF：
+8位像素，256色
+无损压缩
+支持简单动画
+支持boolean透明
+适合简单动画
+JPEG：
+颜色限于256
+有损压缩
+可控制压缩质量
+不支持透明
+适合照片
+PNG：
+有PNG8和truecolor PNG
+PNG8类似GIF颜色上限为256，文件小，支持alpha透明度，无动画
+适合图标、背景、按钮
+ 
+12.CSS有哪些继承属性
+关于文字排版的属性如： 
+        font
+        word-break
+        letter-spacing
+        text-align
+        text-rendering
+        word-spacing
+        white-space
+        text-indent
+        text-transform
+        text-shadow
+line-height
+color
+visibility
+cursor
+ 
+13.样式表置顶，Why？
+浏览器渲染页面都是自上而下的渲染，当在<body>里遇到<link>或是<style>时候会阻塞渲染页面，而且也有可能会造成页面重绘，就好像格子铺里，
+东西都按顺序摆好了，但是老板说，这个东西得这样、那样摆，又得挨个重新摆了。
+除此之外，加在<head>里是为了可以顺序加载所需的样式。 
+14.避免CSS表达式，Why？
+CSS表达式最主要的弊端是它影响性能，要知道CSS是具有时效性的，也就是说，当你修改一下样式，它会马上生效，
+而改变窗口大小，滚动页面甚至移动鼠标都会触发表达式进行频繁的求值，会严重影响，所以要尽量避免。
+15.使用外部JS、CSS，Why？
+我们都知道使用外部文件会增加HTTP请求，但是由于缓存的关系，当用户再次访问时，或者访问其它页面里相同的文件时候，页面会明显提升响应速度，
+而且，还有一点好处就是外部JSS、CSS可以减少页面内的文档大小。 
+16.脚本置于底部，Why？
+脚本的问题就是当浏览器渲染时候遇到<script>，就会跑去下载，
+然后执行里面的JS，这期间页面就会阻塞，等待完事了再继续向下执行。
+所以，为了先将页面最快的呈现给用户，JS应放在</body>的上面。
+ 17.减少访问、操作DOM，Why？
+访问：在《高性能JavaScript》中这么比喻：“把DOM看成一个岛屿，把JS看成另一个岛屿，两者之间以一座收费桥连接”。
+操作：修改和访问DOM元素会造成页面的Repaint和Reflow，也就是重绘和回流。
+所以问题显而易见。
+解决方案：缓存已经访问过的有关元素
+　　　　   更新完节点之后再将它们一次性添加到文档树中
+ 18.事件委托，Why？
+事件委托，也就是利用事件冒泡的机制，把事件绑定到元素对象的父元素上。
+例如：一个多行的表格，含有经过提示行效果，并且表格会随着分页经行变化。
+分析：鉴于上面的第7条，我们不能牺牲性能去为每个变化的行元素绑定事件。
+解决方案：把事件绑定到table的父元素上，根据e.target(e.secElement)的节点类型判断来进行操作
+19.
+ 
+ 
+ 
+ 
+ 
+  JavaScript：
+  
