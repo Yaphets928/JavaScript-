@@ -1,5 +1,5 @@
 1.translate()后的%格式 移动的是自身长宽的百分比
-
+transform中使用多个属性时却需要有空格隔开。记住了是空格隔开!!!
 垂直居中
 不知道自己高度和父容器高度的情况下, 利用绝对定位只需要以下三行：
 parentElement{
@@ -26,5 +26,28 @@ parentElement{
     align-items:center;/*指定垂直居中*/
 }
 
-2.flex
-  
+2.vertical-align
+vertical-align 属性设置元素的垂直对齐方式
+baseline  默认。元素放置在父元素的基线上。
+sub       垂直对齐文本的下标。
+super     垂直对齐文本的上标
+top       把元素的顶端与行中最高元素的顶端对齐
+text-top  把元素的顶端与父元素字体的顶端对齐
+middle    把此元素放置在父元素的中部。
+bottom    把元素的顶端与行中最低的元素的顶端对齐。
+text-bottom 把元素的底端与父元素字体的底端对齐。
+length % 使用 "line-height" 属性的百分比值来排列此元素。允许使用负值。
+inherit  规定应该从父元素继承 vertical-align 属性的值。
+
+3.flex
+  https://www.cnblogs.com/xuyuntao/articles/6391728.html
+  Flex是Flexible Box的缩写，意为"弹性布局"，用来为盒状模型提供最大的灵活性
+  为Flex布局以后，子元素的float、clear和vertical-align属性将失效。
+        以下6个属性设置在容器上：
+                flex-direction　　容器内项目的排列方向(默认横向排列)　　row | row-reverse | column | column-reverse
+                flex-wrap　　容器内项目换行方式    nowrap （不换行）（默认）| wrap （换行）（第一行在上方）| wrap-reverse（在必要的时候拆行或拆列，第一行在下方）
+                flex-flow　　以上两个属性的简写方式   flex-flow: <flex-direction> || <flex-wrap>;
+                justify-content　　项目在主轴上的对齐方式  flex-start | flex-end | center | space-between | space-around
+                align-items　　项目在交叉轴上如何对齐
+                align-content　　定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。
+         ![Image text](https://raw.github.com/yourName/repositpry/master/yourprojectName/img-folder/test.jpg)
