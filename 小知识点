@@ -1,0 +1,30 @@
+1.translate()后的%格式 移动的是自身长宽的百分比
+
+垂直居中
+不知道自己高度和父容器高度的情况下, 利用绝对定位只需要以下三行：
+parentElement{
+        position:relative;
+    }
+ childElement{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+ }
+若父容器下只有一个元素，且父元素设置了高度，则只需要使用相对定位即可
+    parentElement{
+        height:xxx;
+    }
+    .childElement {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+不考虑兼容老式浏览器的话，用Flex布局简单直观一劳永逸：
+parentElement{
+    display:flex;/*Flex布局*/
+    display: -webkit-flex; /* Safari */
+    align-items:center;/*指定垂直居中*/
+}
+
+2.flex
+  
