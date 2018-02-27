@@ -181,7 +181,7 @@ css命名的语义化是指：为html标签添加有意义的class，id补充未
 
 
 CSS：
-1.display:none和visibility:none的区别
+1.display:none和visibility:hidden的区别
 
   display:none;会让元素完全从渲染树中消失，渲染的时候不占据任何空间； 
   visibility: hidden;不会让元素从渲染树消失，渲染师元素继续占据空间，只是内容不可见 
