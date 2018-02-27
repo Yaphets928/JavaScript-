@@ -48,6 +48,6 @@ inherit  规定应该从父元素继承 vertical-align 属性的值。
                 flex-wrap　　容器内项目换行方式    nowrap （不换行）（默认）| wrap （换行）（第一行在上方）| wrap-reverse（在必要的时候拆行或拆列，第一行在下方）
                 flex-flow　　以上两个属性的简写方式   flex-flow: <flex-direction> || <flex-wrap>;
                 justify-content　　项目在主轴上的对齐方式  flex-start | flex-end | center | space-between | space-around
-                align-items　　项目在交叉轴上如何对齐
+                align-items　　项目在交叉轴上如何对齐    
                 align-content　　定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。
          ![Image text](https://raw.github.com/yourName/repositpry/master/yourprojectName/img-folder/test.jpg)
