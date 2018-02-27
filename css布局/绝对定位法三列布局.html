@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>layout_box</title>
+
+    <style>
+        html,body{ margin: 0px;width: 100%; }
+        h3{
+            height: 100px;
+            margin:20px 0 0;
+        }
+        #left,#right{height: 200px; background-color: #ffe6b8;position: absolute;top:122px;}
+        #left{
+            left:0px;
+            width:120px;}
+        #right{
+            right: 0px;
+            width: 200px;}
+        #center{margin:2px 210px 2px 130px;background-color: #eee;height: 200px; }
+    </style>
+</head>
+<body>
+<h3>实现三列宽度自适应布局</h3>
+<div id = "left">我是左边</div>
+<div id = "right">我是右边</div>
+<div id = "center">我是中间</div>
+<p>该法布局的好处，三个div顺序可以任意改变。不足是 因为绝对定位，所以如果页面上还有其他内容，
+    top的值需要小心处理，最好能够对css样式进行一个初始化，就像在上面例子中加了一个标题，如果不对样式进行初始化，
+    则两边和中间的值会对不齐。 另外，随着浏览器窗口缩小，小于200px的时候，会发生压缩。
+    可以看到中间栏宽度随着屏幕大小伸缩。</p>
+</body>
+</html>
