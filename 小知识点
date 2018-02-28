@@ -48,6 +48,117 @@ inherit  规定应该从父元素继承 vertical-align 属性的值。
                 flex-wrap　　容器内项目换行方式    nowrap （不换行）（默认）| wrap （换行）（第一行在上方）| wrap-reverse（在必要的时候拆行或拆列，第一行在下方）
                 flex-flow　　以上两个属性的简写方式   flex-flow: <flex-direction> || <flex-wrap>;
                 justify-content　　项目在主轴上的对齐方式  flex-start | flex-end | center | space-between | space-around
-                align-items　　项目在交叉轴上如何对齐    
-                align-content　　定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。
-         ![Image text](https://raw.github.com/yourName/repositpry/master/yourprojectName/img-folder/test.jpg)
+                                                        flex-start：在主轴上由左或者上开始排列 
+                                                        flex-end：在主轴上由右或者下开始排列
+                                                        center：在主轴上居中排列
+                                                        space-between：在主轴上左右两端或者上下两端开始排列
+                                                        space-around：每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。
+               
+               align-items　　项目在交叉轴上如何对齐  flex-start | flex-end | center | baseline | stretch;
+               ![Image text](https://github.com/Yaphets928/Web-/blob/master/img_folder/bg2015071011.png)
+                align-content　　定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。flex-start | flex-end | center | space-between | space-around | stretch
+               ![Image text](https://github.com/Yaphets928/Web-/blob/master/img_folder/bg2015071012.png)
+               
+      容器中项目的属性：
+                order　　项目的排列顺序。数值越小，排列越靠前，默认为0。
+                flex-grow　　项目的放大比例，默认为0，即如果存在剩余空间，也不放大。
+                flex-shrink　　项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。
+                flex-basis　　在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小。
+                flex　　是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。
+                align-self　　允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。
+         flex:1  意思是 占满
+4.响应式布局
+@media screen and (min-width: 769px){
+}
+@media (max-width: 768px)
+
+宽度需要使用百分比
+处理图片缩放的方法:简单的解决方法可以使用百分比，但这样不友好，会放大或者缩小图片。
+                那么可以尝试给图片指定的最大宽度为百分比。假如图片超过了，就缩小。假如图片小了，就原尺寸输出。
+用::before和::after伪元素 +content 属性来动态显示一些内容或者做其它很酷的事情，在 css3 中，任何元素都可以使用 content 属性了，
+这个方法就是结合 css3 的 attr 属性和 HTML 自定义属性的功能
+pre ，iframe，video 等，都需要和img一样控制好宽度。对于table，建议不要增加 padding 属性，低分辨率下使用内容居中：·
+                table th, table td { padding: 0 0; text-align: center; }
+                
+
+*content 属性与 :before 及 :after 伪元素配合使用，来插入生成内容。
+        content: normal | string | attr() | url() | counter()
+                normal ： 默认值。
+                string ： 查入文本的内容，一般是一个字符串。
+                attr() ： 插入元素的属性值，语法：attr(attribute)。
+                url() ： 插入一个外部资源文件，可以是图像，音频，视频文件或浏览器所支持的其他任何资源。
+                counter() ： 计数器，用于插入排序标识,counter()不仅可以追加数字编号，还可以追加字母编号或罗马数字编号，语法：content:couter(计数器名，编号种类)
+                                                                                 content: "第"counter(number)"点、";
+                                                                                 
+*calc
+用于动态计算长度值。 
+需要注意的是，运算符前后都需要保留一个空格，例如：width: calc(100% - 10px)；
+任何长度值都可以使用calc()函数进行计算；
+calc()函数支持 "+", "-", "*", "/" 运算；
+calc()函数使用标准的数学运算优先级规则；
+
+
+*:after清除浮动的作用：浮动元素容器的clearing问题
+1. 问题的由来
+有这样一种情形：在一个容器（container）中，有两个浮动的子元素。
+<div>
+        <div style="float:left;width:45%;"></div>
+        <div style="float:right;width:45%;"></div>
+</div>
+在浏览器中一运行，就会出现意想不到的结果。实际视图是子元素显示在父容器的外部。
+2. 问题的原因与浮动定位有关。
+在CSS规范中，浮动定位不属于正常的页面流（page flow），是独立定位的。所以，只含有浮动元素的父容器，在显示时不考虑子元素的位置，就当它们不存在一样。这就造成了显示出来，父容器好像空容器一样。
+
+3.解决方法一：添加空元素
+经典的解决方法，就是在浮动元素下方添加一个非浮动元素。
+代码这样写：
+<div>
+<div style="float:left;width:45%;"></div>
+<div style="float:right;width:45%;"></div>
+<div style="clear:both;"></div>
+</div>
+原理是父容器现在必须考虑非浮动子元素的位置，而后者肯定出现在浮动元素下方，所以显示出来，父容器就把所有子元素都包括进去了。这种方法比较简单，但是要在页面中增加冗余标签，违背了语义网的原则。
+
+4.解决方法二：浮动的父容器
+另一种思路是，索性将父容器也改成浮动定位，这样它就可以带着子元素一起浮动了。
+<div style="float:left;">
+<div style="float:left;width:45%;"></div>
+<div style="float:right;width:45%;"></div>
+</div>
+这种方法不用修改HTML代码，但是缺点在于父容器变成浮动以后，会影响到后面元素的定位，而且有时候，父容器是定位死的，无法变成浮动。
+
+5.解决方法三：浮动元素的自动clearing
+让父容器变得可以自动"清理"（clearing）子元素的浮动，从而能够识别出浮动子元素的位置，不会出现显示上的差错。
+要做到这点，只要为父容器加上一条"overflow: hidden"的CSS语句就行了。关于为何父容器可以自动识别：由于加上overflow:hidden之后要计算超出的大小来隐藏，所以父容器会自动撑开自己把所有的子元素放进去，同时会计算浮动的子元素。
+代码这样写：
+<div style="overflow: hidden;">
+<div style="float:left;width:45%;"></div>
+<div style="float:right;width:45%;"></div>
+</div>
+这种方法的缺点主要有二个，一个是IE 6不支持，另一个是一旦子元素的大小超过父容器的大小，就会出显示问题。
+
+6.解决方法四：能不能通过CSS语句添加子元素呢，这样就不用修改HTML代码了？
+回答是可以的，我们知道CSS语句中有一个:after伪选择符，就可以在父容器的尾部自动创建一个子元素，这正好符合我们的需要。
+下面的代码参照了lifesinger的写法：
+.clearfix:after {
+content: "\0020";
+display: block;
+height: 0;
+clear: both;
+}
+"clearfix"是父容器的class名称，"content:"020";"是在父容器的结尾处放一个空白字符，"height: 0;"是让这个这个空白字符不显示出来，"display: block; clear: both;"是确保这个空白字符是非浮动的独立区块。
+但是，:after选择符IE 6不支持，也就是说上面的这段代码在IE 6中无效，这怎么办？
+我们添加一条IE 6的独有命令"zoom:1;"就行了，这条命令的作用是激活父元素的"hasLayout"属性，让父元素拥有自己的布局。IE 6会读取这条命令，其他浏览器则会直接忽略它。
+
+7.最终代码
+.clearfix:after {
+content: "\0020";
+display: block;
+height: 0;
+clear: both;
+}
+.clearfix {
+zoom: 1;
+}
+
+
