@@ -256,10 +256,64 @@ CSS：
  http://www.nowamagic.net/academy/detail/48110160
  http://div.io/topic/609
  
- 7.BFC
+ 7.BFC与浮动
  Block formatting contexts
- 浮动元素和绝对定位元素，非块级盒子的块级容器（例如 inline-blocks, table-cells, 和 table-captions），以及overflow值不为“visiable”的块级盒子，
- 都会为他们的内容创建新的BFC（块级格式上下文）。
+ 那么怎么触发BFC呢？
+float 除了none以外的值 
+overflow 除了visible 以外的值（hidden，auto，scroll ）
+display (table-cell，table-caption，inline-block) 
+position（absolute，fixed） 
+fieldset元素
+ 里面的子元素不会在布局上影响外面的元素，反之亦然，同时BFC仍然属于文档中的普通流
+ 
+float 属性定义元素在哪个方向浮动。以往这个属性总应用于图像，使文本围绕在图像周围，
+不过在 CSS 中，任何元素都可以浮动。浮动元素会生成一个块级框，而不论它本身是何种元素，且浮动元素的宽度是根据内容的宽度确定的。
+假如在一行之上只有极少的空间可供浮动元素，那么这个元素会跳至下一行，这个过程会持续到某一行拥有足够的空间为止。
+浮动的框可以向左或向右移动，直到它的外边缘碰到包含框或另一个浮动框的边框为止。
+由于浮动框不在文档的普通流中，所以文档的普通流中的块框表现得就像浮动框不存在一样。
+BFC的特性：
+1)块级格式化上下文会阻止外边距叠加 
+当两个相邻的块框在同一个块级格式化上下文中时，它们之间垂直方向的外边距会发生叠加。换句话说，如果这两个相邻的块框不属于同一个块级格式化上下文，那么它们的外边距就不会叠加。 
+2)块级格式化上下文不会重叠浮动元素 
+根据规定，一个块级格式化上下文的边框不能和它里面的元素的外边距重叠。这就意味着浏览器将会给块级格式化上下文创建隐式的外边距来阻止它和浮动元 素的外边距叠加。由于这个原因，当给一个挨着浮动的块级格式化上下文添加负的外边距时将会不起作用（Webkit和IE6在这点上有一个问题——可以看这 个测试用例）。 
+3)块级格式化上下文通常可以包含浮动 
+触发了BFC的话，就不会被float元素覆盖，当子元素全部浮动的时候也能够正确地包含了
+
+浮动对父级元素也会带来影响，比如说伟大的“塌陷”所有子元素的浮动不会将父级元素的高度撑开。
+那么怎么解决这个问题呢？
+一个很古老的办法就是在所有子元素的末尾添加一个空的div,并且设置它的clear：both。 
+看代码如下：
+#body-div  .clear-float{
+            clear:both;
+            border:0;
+            padding:0;
+            margin:0;
+        }
+ 不过有大神已经研究出了clearfix的写法，可以达到最合理的效果，主要目的就是触发父级盒子自身的BFC。       
+ 版本一：
+    .clearfix:after {
+        content: "\200B";
+        display: block;
+        height: 0;
+        clear: both;
+    }
+
+    .clearfix {
+        *zoom: 1;/*IE/7/6*/
+    }
+    本二：
+.clearfix:before, .clearfix:after {
+    content: "";
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+}
+.clearfix {
+*zoom: 1;        /*IE/7/6 */
+}
+经过测试在IE的各个版本的浏览器中和非IE浏览器都能够正常的得到结果。
+
 
  8.css sprite
  CSSSprites在国内很多人叫css精灵，是一种网页图片应用处理方式。
