@@ -305,10 +305,10 @@ event.offsetY ==> 相对容器的垂直坐标
 document.documentElement.scrollTop ==> 垂直方向滚动的值
 event.clientX+document.documentElement.scrollTop ==> 相对文档的水平座标+垂直方向滚动的量
 
-div.offsetWidth 元素边框之内的宽度
-div.offsetHeight 元素边框之内的高度
+div.offsetWidth 元素边框及之内的宽度
+div.offsetHeight 元素边框及之内的高度
 
-
+clientheight是框里面不含洭的高度
 
 
 
