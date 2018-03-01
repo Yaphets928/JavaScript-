@@ -39,6 +39,15 @@ text-bottom 把元素的底端与父元素字体的底端对齐。
 length % 使用 "line-height" 属性的百分比值来排列此元素。允许使用负值。
 inherit  规定应该从父元素继承 vertical-align 属性的值。
 
+表格居中
+、td{ text-align:center;}
+
+、<td align="center" valign="middle">
+    前一个是水平居中 后一个是垂直居中
+    对应的css写法:
+    <td style="text-align:center;vertical-align:middle;">
+    
+    
 3.flex
   https://www.cnblogs.com/xuyuntao/articles/6391728.html
   Flex是Flexible Box的缩写，意为"弹性布局"，用来为盒状模型提供最大的灵活性
