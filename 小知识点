@@ -162,3 +162,112 @@ zoom: 1;
 }
 
 
+5.background:#00FF00 url(bgimage.gif) no-repeat fixed top;}
+
+属性说明：
+background:背景色 背景图像 背景图像是否及如何重复 背景图像是否固定或者随着页面的其余部分滚动 背景图像的起始位置
+
+背景色
+color-name
+color-rgb
+color-hex
+transparent
+
+背景图像
+url(URL)
+none
+
+背景图像是否及如何重复
+repeat
+repeat-x
+repeat-y
+no-repeat
+
+背景图像是否固定或者随着页面的其余部分滚动
+scroll  
+fixed
+
+背景图像的起始位置
+top left
+top center
+top right
+center left
+center center
+center right
+bottom left
+bottom center
+bottom right
+x% y%
+xpos ypos
+
+6，box-sizing
+
+padding + border + width= 盒子的宽度
+padding+ border + height = 盒子的高度
+
+box-sizing
+语法：box-sizing: content-box | border-box | inherit;
+设置box-sizing:border-box以后
+例如，上面我们想要一个宽度为200px的盒子，那么我们直接设置宽度为200px。
+当再设置它的左右边框和左右补白后，它的内容区会自动调整。这可能更直接和一目了然。
+content-box 
+描述：在宽度和高度之外绘制元素的内边距和边框。
+IE8及以上版本支持该属性，Firefox 需要加上浏览器厂商前缀-moz-，对于低版本的IOS和Android浏览器也需要加上。
+
+
+width:100%，则说明p的width会继承父元素的600px就已经充满div区域，然后自己又有padding，所以会出现滚动条。
+而width:auto则比较聪明，它是总体宽度（广义，包括width，margin,padding,border这些）等于父级宽度（狭义，内容区，仅指width），所以如果padding已经左右占去20px的空间，那么width给的值就是580px。
+但无论是width:100%还是auto，其计算的参照都是父级内容区width值，而非总宽度值。。
+100%是宽度占父元素100%或页面100%(position：fixed)等，inherit的宽度是继承父元素的宽度，父元素是多少就是多少
+主要在position不是static时有很大区别
+
+topleft属性在定位元素上才有用
+
+line-height是行高的意思，height则是定义元素自身的高度。
+例如下面这段代码
+<div class="test">文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字</div>
+如果我们定义.test {line-height:20px;}，那么这个元素的实际高度将取决于其中内容的多少，假如文字部分在浏览器里面显示为一行，那么这个div的实际高度就是20px，如果文字显示为两行，那么div的实际高度就是40px，而且文字的行高是20px的；
+如果我们定义.test{height:40px}，那么这个元素的实际高度一般并不会因为内容的多少而发生改变，如果文字显示为一行，那么这个div的高度仍然是40px，如果显示为2行，但是文字的行高不够20px，这个div的高度也不会因为文字内容的高度小于height而发生改变。不过如果文字内容的高度大于40px了，一般来说这个div的高度还是会相应增加的。
+
+line-height:150%与line-height:1.5的真正区别是什么？150%是根据父元素的字体大小计算出行高，并且子元素依然沿用这个计算后的行高。而1.5则是根据子元素自己字体的大小去乘以1.5来计算行高。另，1.5em等也是按照150%的情况来算的。
+
+border-radius: none　｜　length{1,4} [/ length{1,4} 
+其中每一个值可以为 数值或百分比的形式。 
+length/length　第一个lenght表示水平方向的半径，而第二个表示竖直方向的半径。 
+如果是一个值，那么 top-left、top-right、bottom-right、bottom-left 四个值相等。 
+如果是两个值，那么 top-left和bottom-right相等，为第一个值，top-right和bottom-left值相等，为第二个值。 
+三个值四个值都可以
+
+outline （轮廓）是绘制于元素周围的一条线，位于边框边缘的外围，可起到突出元素的作用。
+
+font:fontfont-size/line-height，用来规定字体尺寸和行高
+
+section
+何时使用，基本上可以这两点：
+section 不是一个专用来做容器的标签，专用的是 div
+section 里应该有 标题（h1~6），但文章中推荐用 article 来代替
+我们可以理解为一个非文章段落，有明确 id 的一个特殊模块容器（不是专用以包住块的容器）
+一个section通常由内容和标题组成，通常不推荐那些没有标题的内容用section，
+
+
+label
+<label>元素的直观效果是直接显示标记之间的文本，而且不会为文本呈现任何特殊效果。但是，它和其他文本标记所不同的是，它为鼠标用户改进了用户体验性。 
+这是因为，<label>元素可以附带一个for属性，只要将该属性的值设置为表单中任何一个控件的id属性的值，则当用户点击该标签（文本）时，浏览器就会自动将焦点转到和标签相关的表单控件上。即：如果在<label>元素内点击文本，就会触发此控件。
+select中的option里 label属性规定更短版本的选项。
+value 属性规定在表单被提交时被发送到服务器的值。
+<option> 与 <option/> 之间的值是浏览器显示在下拉列表中的内容，而 value 属性中的值是表单被提交时被发送到服务器的值。
+
+form
+通俗的讲 form标签是用来进行表单提交用的
+form标签里面的常见属性如下
+action: 表单提交的地址, 肯定是要提交给某个服务器的,action的地址就是要提交的服务器的地址
+method:以何种方式提交,常见的为get和post. 区别在于一个是明文(在url中显示),一个是暗文
+
+form标签是和服务器交互用的, 以用户注册为例
+用户在浏览器中的注册页面添加信息后,点击提交,此时是将这些信息提交至某个服务器
+服务器根据提交的信息将注册信息保存. 这个过程就需要使用form标签了
+form中action属性应该是服务器注册模块的地址
+form标签下应该有input,textarea,select等表单标签以及<input type=" submit"标签
+当点击submit按钮时,浏览器会自动将表单信息封装提交至action中的地址
+所谓的提交就是访问action中地址并携带着form表单中input,textarea,select的信息
+
