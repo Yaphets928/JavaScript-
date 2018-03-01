@@ -280,3 +280,41 @@ form标签下应该有input,textarea,select等表单标签以及<input type=" su
 当点击submit按钮时,浏览器会自动将表单信息封装提交至action中的地址
 所谓的提交就是访问action中地址并携带着form表单中input,textarea,select的信息
 
+7.offsetleft
+可以判断一个物体的跟document的左边距离，也就是浏览器左边缘。
+比如你写一个div 获取这个div之后alert(你的div.offsetLeft)就可以看到他现在距离浏览器左边的距离。
+当然你也可以用他给对象赋值，offset不单单只有Left  还有offsetTop  offsetWidth offsetHeight  都是JS里很有用的属性。
+
+
+8.documentElement 属性以一个元素对象返回一个文档的文档元素。
+document.body.clientWidth ==> 可见区域宽度
+document.body.clientHeight ==> 可见区域高度
+document.documentElement.clientWidth ==> 页面对象宽度（即BODY对象宽度加上Margin宽）
+document.documentElement.clientHeight ==> 页面对象高度（即BODY对象高度加上Margin高）
+scrollWidth ==> 获取对象的滚动宽度
+scrollHeight ==>  获取对象的滚动高度
+scrollLeft ==> 设置或获取位于对象左边界和窗口中目前可见内容的最左端之间的距离（被卷去的左）
+scrollTop ==> 设置或获取位于对象最顶端和窗口中可见内容的最顶端之间的距离（被卷去的高）
+offsetLeft ==> 获取对象相对于版面或由 offsetParent 属性指定的父坐标的计算左侧位置
+offsetTop ==> 获取对象相对于版面或由 offsetTop 属性指定的父坐标的计算顶端位置
+offsetHeight ==> 获取对象相对于版面或由父坐标 offsetParent 属性指定的父坐标的高度
+event.clientX ==> 相对文档的水平座标
+event.clientY ==> 相对文档的垂直座标
+event.offsetX ==> 相对容器的水平坐标
+event.offsetY ==> 相对容器的垂直坐标
+document.documentElement.scrollTop ==> 垂直方向滚动的值
+event.clientX+document.documentElement.scrollTop ==> 相对文档的水平座标+垂直方向滚动的量
+
+div.offsetWidth 元素边框之内的宽度
+div.offsetHeight 元素边框之内的高度
+
+
+
+
+
+
+
+
+
+
+
