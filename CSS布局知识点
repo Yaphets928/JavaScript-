@@ -311,7 +311,40 @@ div.offsetHeight 元素边框及之内的高度
 clientheight是框里面不含洭的高度
 
 
+9.title标签
+一。HTML的title属性,当光标移动到该标签时，信息提示框内的内容
 
+二。设置标签样式时指定　属性css样式
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+   <!--页面内容关键字-->  
+   <meta name="keywords" content="页面内容关键字">  
+  
+    <title>css:是层叠样式表</title>  
+    <!--外部样式-->  
+    <link rel="stylesheet" type="text/css" href="css1.css">  
+    <style type="text/css">  
+        /*有tittle属性*/  
+        [title] {  
+            color: darkmagenta;  
+        }  
+  
+        /*指定tittle属性值*/  
+        [title=t] {  
+            color: red;  
+        }  
+    </style>  
+</head>  
+<body>  
+  
+<hr>  
+<p title="HTML的标签真多啊!">属性选择器</p>  
+<hr>  
+<p title="t">属性选择器指定属性值</p>  
+</body>  
+</html>  
 
 
 
