@@ -1,4 +1,4 @@
-1.translate()后的%格式 移动的是自身长宽的百分比
+# 1.translate()后的%格式 移动的是自身长宽的百分比
 transform中使用多个属性时却需要有空格隔开。记住了是空格隔开!!!
 垂直居中
 不知道自己高度和父容器高度的情况下, 利用绝对定位只需要以下三行：
@@ -26,7 +26,7 @@ parentElement{
     align-items:center;/*指定垂直居中*/
 }
 
-2.vertical-align
+# 2.vertical-align
 vertical-align 属性设置元素的垂直对齐方式
 baseline  默认。元素放置在父元素的基线上。
 sub       垂直对齐文本的下标。
@@ -48,7 +48,7 @@ inherit  规定应该从父元素继承 vertical-align 属性的值。
     <td style="text-align:center;vertical-align:middle;">
     
     
-3.flex
+# 3.flex
   https://www.cnblogs.com/xuyuntao/articles/6391728.html
   Flex是Flexible Box的缩写，意为"弹性布局"，用来为盒状模型提供最大的灵活性
   为Flex布局以后，子元素的float、clear和vertical-align属性将失效。
@@ -76,7 +76,7 @@ inherit  规定应该从父元素继承 vertical-align 属性的值。
                 flex　　是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。
                 align-self　　允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。
          flex:1  意思是 占满
-4.响应式布局
+# 4.响应式布局
 @media screen and (min-width: 769px){
 }
 @media (max-width: 768px)
@@ -155,7 +155,8 @@ display: block;
 height: 0;
 clear: both;
 }
-"clearfix"是父容器的class名称，"content:"020";"是在父容器的结尾处放一个空白字符，"height: 0;"是让这个这个空白字符不显示出来，"display: block; clear: both;"是确保这个空白字符是非浮动的独立区块。
+"clearfix"是父容器的class名称，"content:"/0020";"是在父容器的结尾处放一个空白字符，"height: 0;"是让这个这个空白字符不显示出来，
+"display: block; clear: both;"是确保这个空白字符是非浮动的独立区块。
 但是，:after选择符IE 6不支持，也就是说上面的这段代码在IE 6中无效，这怎么办？
 我们添加一条IE 6的独有命令"zoom:1;"就行了，这条命令的作用是激活父元素的"hasLayout"属性，让父元素拥有自己的布局。IE 6会读取这条命令，其他浏览器则会直接忽略它。
 
@@ -171,7 +172,7 @@ zoom: 1;
 }
 
 
-5.background:#00FF00 url(bgimage.gif) no-repeat fixed top;}
+# 5.background:#00FF00 url(bgimage.gif) no-repeat fixed top;}
 
 属性说明：
 background:背景色 背景图像 背景图像是否及如何重复 背景图像是否固定或者随着页面的其余部分滚动 背景图像的起始位置
@@ -209,7 +210,7 @@ bottom right
 x% y%
 xpos ypos
 
-6，box-sizing
+# 6，box-sizing
 
 padding + border + width= 盒子的宽度
 padding+ border + height = 盒子的高度
@@ -280,13 +281,13 @@ form标签下应该有input,textarea,select等表单标签以及<input type=" su
 当点击submit按钮时,浏览器会自动将表单信息封装提交至action中的地址
 所谓的提交就是访问action中地址并携带着form表单中input,textarea,select的信息
 
-7.offsetleft
+# 7.offsetleft
 可以判断一个物体的跟document的左边距离，也就是浏览器左边缘。
 比如你写一个div 获取这个div之后alert(你的div.offsetLeft)就可以看到他现在距离浏览器左边的距离。
 当然你也可以用他给对象赋值，offset不单单只有Left  还有offsetTop  offsetWidth offsetHeight  都是JS里很有用的属性。
 
 
-8.documentElement 属性以一个元素对象返回一个文档的文档元素。
+# 8.documentElement 属性以一个元素对象返回一个文档的文档元素。
 document.body.clientWidth ==> 可见区域宽度
 document.body.clientHeight ==> 可见区域高度
 document.documentElement.clientWidth ==> 页面对象宽度（即BODY对象宽度加上Margin宽）
@@ -311,7 +312,7 @@ div.offsetHeight 元素边框及之内的高度
 clientheight是框里面不含洭的高度
 
 
-9.title标签
+# 9.title标签
 一。HTML的title属性,当光标移动到该标签时，信息提示框内的内容
 
 二。设置标签样式时指定　属性css样式
